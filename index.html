@@ -1045,7 +1045,7 @@
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             }
             .contact-buttons svg {
-                fill: #ffffff;
+                fill: #ffee02;
                 width: 24px;
                 height: 24px;
                 transition: fill 0.3s ease, animation 1.5s;
@@ -1103,6 +1103,101 @@
         document.body.appendChild(buttonContainer);
     })();
 </script>  
+<script>
+(function () {
+  const style = document.createElement("style");
+  style.textContent = `
+    .pdf-widget-container {
+      position: fixed;
+      top: 0;
+      right: 50px;
+      width: 120px;
+      height: 200px;
+      z-index: 1000;
+      pointer-events: none;
+      animation: dropDown 1.2s ease-out forwards;
+      transform: translateY(-150px);
+    }
+
+    @keyframes dropDown {
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .rope {
+      width: 2px;
+      height: 120px;
+      background: #ffee02;
+      margin: 0 auto;
+      animation: swing-rope 2s infinite ease-in-out;
+    }
+
+    .pdf-tag {
+      background: #ffee02;
+      color: black;
+      padding: 12px 18px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transform-origin: top center;
+      animation: swing 2.5s infinite ease-in-out;
+      pointer-events: auto;
+      text-decoration: none;
+      display: block;
+      transition: all 0.2s ease-in-out;
+      font-size: 16px;
+    }
+
+    .pdf-tag:hover {
+      background: #ffee02;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      animation: swing-hover 0.2s infinite ease-in-out;
+    }
+
+    .pdf-tag .emoji {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    @keyframes swing {
+      0% { transform: rotate(2deg); }
+      50% { transform: rotate(-2deg); }
+      100% { transform: rotate(2deg); }
+    }
+
+    @keyframes swing-rope {
+      0% { transform: rotate(0.5deg); }
+      50% { transform: rotate(-0.5deg); }
+      100% { transform: rotate(0.5deg); }
+    }
+
+    @keyframes swing-hover {
+      0% { transform: rotate(1deg); }
+      50% { transform: rotate(-1deg); }
+      100% { transform: rotate(1deg); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  const container = document.createElement("div");
+  container.className = "pdf-widget-container";
+
+  const rope = document.createElement("div");
+  rope.className = "rope";
+
+  const link = document.createElement("a");
+  link.href = "profile.pdf";
+  link.className = "pdf-tag";
+  link.download = "";
+  link.innerHTML = `<span class="emoji">📄</span>Download<br>Profile`;
+
+  container.appendChild(rope);
+  container.appendChild(link);
+  document.body.appendChild(container);
+})();
+</script>
 </body>
 
 
